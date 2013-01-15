@@ -1,0 +1,212 @@
+{
+    "hash": "2990de4b6357eaa3b846a9a63248856c",
+    "packages": [
+        {
+            "name": "florianwolters/component-core-comparable",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/FlorianWolters/PHP-Component-Core-Comparable.git",
+                "reference": "v0.1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/FlorianWolters/PHP-Component-Core-Comparable/archive/v0.1.0.zip",
+                "reference": "v0.1.0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "time": "2013-01-07 16:53:51",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "FlorianWolters": [
+                        "src/php",
+                        "src/tests/mocks/php"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Florian Wolters",
+                    "email": "wolters.fl@gmail.com",
+                    "homepage": "http://blog.florianwolters.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Implements a total ordering on objects.",
+            "homepage": "http://github.com/FlorianWolters/PHP-Component-Core-Comparable",
+            "keywords": [
+                "core",
+                "comparison",
+                "compareTo",
+                "comparable"
+            ]
+        },
+        {
+            "name": "florianwolters/component-core-debugprint",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FlorianWolters/PHP-Component-Core-DebugPrint",
+                "reference": "c85b95934eb1636e7851c1b1d6246c332312f248"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/FlorianWolters/PHP-Component-Core-DebugPrint/archive/c85b95934eb1636e7851c1b1d6246c332312f248.zip",
+                "reference": "c85b95934eb1636e7851c1b1d6246c332312f248",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3",
+                "florianwolters/component-core-hashcode": ">=0.1-beta"
+            },
+            "time": "2013-01-05 12:16:43",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "FlorianWolters": [
+                        "src/php"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Florian Wolters",
+                    "email": "wolters.fl@gmail.com",
+                    "homepage": "http://blog.florianwolters.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The Debug Print Method implementation pattern as a simple-to-use PHP component.",
+            "homepage": "http://github.com/FlorianWolters/PHP-Component-Core-DebugPrint",
+            "keywords": [
+                "debug",
+                "pattern",
+                "language",
+                "debug print method",
+                "tostring"
+            ]
+        },
+        {
+            "name": "florianwolters/component-core-equality",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FlorianWolters/PHP-Component-Core-Equality",
+                "reference": "513f4abf4a47fa19948c3bd12cccc8aa312e7846"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/FlorianWolters/PHP-Component-Core-Equality/archive/513f4abf4a47fa19948c3bd12cccc8aa312e7846.zip",
+                "reference": "513f4abf4a47fa19948c3bd12cccc8aa312e7846",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "time": "2013-01-07 17:06:16",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "FlorianWolters": [
+                        "src/php",
+                        "src/tests/mocks/php",
+                        "src/tests/unit-tests/php"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Florian Wolters",
+                    "email": "wolters.fl@gmail.com",
+                    "homepage": "http://blog.florianwolters.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Implements an equivalence relation on non-null object references.",
+            "homepage": "http://github.com/FlorianWolters/PHP-Component-Core-Equality",
+            "keywords": [
+                "core",
+                "equality",
+                "comparison",
+                "equals"
+            ]
+        },
+        {
+            "name": "florianwolters/component-core-hashcode",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FlorianWolters/PHP-Component-Core-HashCode",
+                "reference": "8f9b7029b129dbeacb13ca250886f2c40cb6070b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/FlorianWolters/PHP-Component-Core-HashCode/archive/8f9b7029b129dbeacb13ca250886f2c40cb6070b.zip",
+                "reference": "8f9b7029b129dbeacb13ca250886f2c40cb6070b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "time": "2012-09-27 15:33:39",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "FlorianWolters": [
+                        "src/php",
+                        "src/tests/unit-tests/php"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Florian Wolters",
+                    "email": "wolters.fl@gmail.com",
+                    "homepage": "http://blog.florianwolters.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Provides a hash code value for objects.",
+            "homepage": "http://github.com/FlorianWolters/PHP-Component-Core-HashCode",
+            "keywords": [
+                "language",
+                "hash"
+            ]
+        }
+    ],
+    "packages-dev": null,
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "florianwolters/component-core-debugprint": 20,
+        "florianwolters/component-core-comparable": 20,
+        "florianwolters/component-core-equality": 20,
+        "florianwolters/component-core-hashcode": 20
+    }
+}

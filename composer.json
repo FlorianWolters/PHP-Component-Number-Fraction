@@ -1,0 +1,30 @@
+{
+    "name": "florianwolters/component-number-fraction",
+    "description": "Fraction is a Number implementation that stores a fraction (numerator/denominator) accurately.",
+    "type": "library",
+    "keywords": ["fraction", "arithmetic", "number", "math"],
+    "homepage": "http://github.com/FlorianWolters/PHP-Component-Number-Fraction",
+    "license": "LGPL-3.0+",
+    "authors": [
+      {
+        "name": "Florian Wolters",
+        "email": "wolters.fl@gmail.com",
+        "homepage": "http://blog.florianwolters.de",
+        "role": "Developer"
+      }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "florianwolters/component-core-debugprint": "dev-master",
+        "florianwolters/component-core-comparable": "dev-master",
+        "florianwolters/component-core-equality": "dev-master",
+        "florianwolters/component-core-hashcode": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "FlorianWolters": [
+                "src/php"
+            ]
+        }
+    }
+}
