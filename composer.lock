@@ -1,26 +1,29 @@
 {
-    "hash": "2990de4b6357eaa3b846a9a63248856c",
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "81e9c5d0b5399fd1a686030389b29931",
     "packages": [
         {
             "name": "florianwolters/component-core-comparable",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git://github.com/FlorianWolters/PHP-Component-Core-Comparable.git",
-                "reference": "v0.1.0"
+                "url": "https://github.com/FlorianWolters/PHP-Component-Core-Comparable.git",
+                "reference": "f6d9c11a7c672c704dd02420d881da9d91d34b21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/FlorianWolters/PHP-Component-Core-Comparable/archive/v0.1.0.zip",
-                "reference": "v0.1.0",
+                "url": "https://api.github.com/repos/FlorianWolters/PHP-Component-Core-Comparable/zipball/f6d9c11a7c672c704dd02420d881da9d91d34b21",
+                "reference": "f6d9c11a7c672c704dd02420d881da9d91d34b21",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3"
+                "php": ">=5.4"
             },
-            "time": "2013-01-07 16:53:51",
             "type": "library",
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "FlorianWolters": [
@@ -41,41 +44,49 @@
                     "role": "Developer"
                 }
             ],
-            "description": "Implements a total ordering on objects.",
+            "description": "Imposes a total ordering on objects as a PHP component.",
             "homepage": "http://github.com/FlorianWolters/PHP-Component-Core-Comparable",
             "keywords": [
-                "core",
-                "comparison",
+                "comparable",
                 "compareTo",
-                "comparable"
-            ]
+                "comparison",
+                "core"
+            ],
+            "time": "2013-07-12 14:36:49"
         },
         {
             "name": "florianwolters/component-core-debugprint",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/FlorianWolters/PHP-Component-Core-DebugPrint",
-                "reference": "c85b95934eb1636e7851c1b1d6246c332312f248"
+                "url": "https://github.com/FlorianWolters/PHP-Component-Core-DebugPrint.git",
+                "reference": "7056caf56730b67cb1aec836ae8797edb863b9b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/FlorianWolters/PHP-Component-Core-DebugPrint/archive/c85b95934eb1636e7851c1b1d6246c332312f248.zip",
-                "reference": "c85b95934eb1636e7851c1b1d6246c332312f248",
+                "url": "https://api.github.com/repos/FlorianWolters/PHP-Component-Core-DebugPrint/zipball/7056caf56730b67cb1aec836ae8797edb863b9b3",
+                "reference": "7056caf56730b67cb1aec836ae8797edb863b9b3",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3",
-                "florianwolters/component-core-hashcode": ">=0.1-beta"
+                "florianwolters/component-core-hashcode": ">=0.2",
+                "php": ">=5.4"
             },
-            "time": "2013-01-05 12:16:43",
+            "require-dev": {
+                "pdepend/pdepend": "2.*",
+                "phpmd/phpmd": "2.*",
+                "phpunit/phpunit": "4.*",
+                "sami/sami": "2.*",
+                "satooshi/php-coveralls": "0.*@dev",
+                "sebastian/phpcpd": "2.*",
+                "sebastian/phpdcd": "1.*",
+                "sensiolabs/security-checker": "1.*",
+                "squizlabs/php_codesniffer": "2.*@dev"
+            },
             "type": "library",
-            "installation-source": "source",
             "autoload": {
-                "psr-0": {
-                    "FlorianWolters": [
-                        "src/php"
-                    ]
+                "psr-4": {
+                    "FlorianWolters\\Component\\Core\\": "src/main/php"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -90,43 +101,49 @@
                     "role": "Developer"
                 }
             ],
-            "description": "The Debug Print Method implementation pattern as a simple-to-use PHP component.",
+            "description": "The Debug Print Method implementation pattern as a PHP component.",
             "homepage": "http://github.com/FlorianWolters/PHP-Component-Core-DebugPrint",
             "keywords": [
+                "core",
                 "debug",
-                "pattern",
-                "language",
                 "debug print method",
+                "language",
+                "pattern",
                 "tostring"
-            ]
+            ],
+            "time": "2014-07-07 11:59:46"
         },
         {
             "name": "florianwolters/component-core-equality",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/FlorianWolters/PHP-Component-Core-Equality",
-                "reference": "513f4abf4a47fa19948c3bd12cccc8aa312e7846"
+                "url": "https://github.com/FlorianWolters/PHP-Component-Core-Equality.git",
+                "reference": "6c152ce6032674c7103a456e5e3ff7f622aa8e03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/FlorianWolters/PHP-Component-Core-Equality/archive/513f4abf4a47fa19948c3bd12cccc8aa312e7846.zip",
-                "reference": "513f4abf4a47fa19948c3bd12cccc8aa312e7846",
+                "url": "https://api.github.com/repos/FlorianWolters/PHP-Component-Core-Equality/zipball/6c152ce6032674c7103a456e5e3ff7f622aa8e03",
+                "reference": "6c152ce6032674c7103a456e5e3ff7f622aa8e03",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4"
             },
-            "time": "2013-01-07 17:06:16",
+            "require-dev": {
+                "phpmd/phpmd": "2.*",
+                "phpunit/phpunit": "4.*",
+                "sami/sami": "1.*",
+                "satooshi/php-coveralls": "0.*",
+                "sebastian/phpcpd": "2.*",
+                "sebastian/phpdcd": "1.*",
+                "sensiolabs/security-checker": "1.*",
+                "squizlabs/php_codesniffer": "2.*@dev"
+            },
             "type": "library",
-            "installation-source": "source",
             "autoload": {
-                "psr-0": {
-                    "FlorianWolters": [
-                        "src/php",
-                        "src/tests/mocks/php",
-                        "src/tests/unit-tests/php"
-                    ]
+                "psr-4": {
+                    "FlorianWolters\\Component\\Core\\": "src/main/php"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -141,41 +158,50 @@
                     "role": "Developer"
                 }
             ],
-            "description": "Implements an equivalence relation on non-null object references.",
+            "description": "Implements equivalence relations on non-null object references as a PHP component.",
             "homepage": "http://github.com/FlorianWolters/PHP-Component-Core-Equality",
             "keywords": [
+                "comparison",
                 "core",
                 "equality",
-                "comparison",
-                "equals"
-            ]
+                "equals",
+                "reference equality",
+                "value equality"
+            ],
+            "time": "2014-05-31 12:54:07"
         },
         {
             "name": "florianwolters/component-core-hashcode",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/FlorianWolters/PHP-Component-Core-HashCode",
-                "reference": "8f9b7029b129dbeacb13ca250886f2c40cb6070b"
+                "url": "https://github.com/FlorianWolters/PHP-Component-Core-HashCode.git",
+                "reference": "03a9afe47b5e56983df1e6e7194153efbe0de3f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/FlorianWolters/PHP-Component-Core-HashCode/archive/8f9b7029b129dbeacb13ca250886f2c40cb6070b.zip",
-                "reference": "8f9b7029b129dbeacb13ca250886f2c40cb6070b",
+                "url": "https://api.github.com/repos/FlorianWolters/PHP-Component-Core-HashCode/zipball/03a9afe47b5e56983df1e6e7194153efbe0de3f7",
+                "reference": "03a9afe47b5e56983df1e6e7194153efbe0de3f7",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": ">=5.4"
             },
-            "time": "2012-09-27 15:33:39",
+            "require-dev": {
+                "pdepend/pdepend": "2.*",
+                "phpmd/phpmd": "2.*",
+                "phpunit/phpunit": "4.*",
+                "sami/sami": "2.*",
+                "satooshi/php-coveralls": "0.*@dev",
+                "sebastian/phpcpd": "2.*",
+                "sebastian/phpdcd": "1.*",
+                "sensiolabs/security-checker": "1.*",
+                "squizlabs/php_codesniffer": "2.*@dev"
+            },
             "type": "library",
-            "installation-source": "source",
             "autoload": {
-                "psr-0": {
-                    "FlorianWolters": [
-                        "src/php",
-                        "src/tests/unit-tests/php"
-                    ]
+                "psr-4": {
+                    "FlorianWolters\\Component\\Core\\": "src/main/php"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -190,15 +216,21 @@
                     "role": "Developer"
                 }
             ],
-            "description": "Provides a hash code value for objects.",
+            "description": "Provides a hash code value for objects as a PHP component.",
             "homepage": "http://github.com/FlorianWolters/PHP-Component-Core-HashCode",
             "keywords": [
+                "core",
+                "hash",
+                "hash code",
                 "language",
-                "hash"
-            ]
+                "object"
+            ],
+            "time": "2014-07-07 11:27:39"
         }
     ],
-    "packages-dev": null,
+    "packages-dev": [
+
+    ],
     "aliases": [
 
     ],
@@ -208,5 +240,11 @@
         "florianwolters/component-core-comparable": 20,
         "florianwolters/component-core-equality": 20,
         "florianwolters/component-core-hashcode": 20
-    }
+    },
+    "platform": {
+        "php": ">=5.4"
+    },
+    "platform-dev": [
+
+    ]
 }

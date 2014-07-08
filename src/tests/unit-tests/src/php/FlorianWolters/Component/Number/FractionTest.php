@@ -485,4 +485,91 @@ class FractionTest extends \PHPUnit_Framework_TestCase
             $this->firstFraction->divideBy($this->secondFraction)
         );
     }
+
+    public function testConstructWithNegativeDenominatorReturnsNegativeNumerator()
+    {
+        $f= new Fraction(2,-3);
+        $this->assertEquals(-2, $f->getNumerator());
+        $this->assertEquals(3, $f->getDenominator());
+
+    }
+
+    /**
+     *
+     * @dataProvider rationalFloats
+     *
+     * @param float $real
+     * @param int $num
+     * @param int $den
+     */
+    public function testFromRealWithRationalValuesReturnsFraction($real, $num, $den)
+    {
+        $f = Fraction::fromReal($real);
+        $this->assertInstanceOf(self::$classNameUnderTest, $f);
+        $this->assertEquals($num, $f->getNumerator());
+        $this->assertEquals($den, $f->getDenominator());
+    }
+
+    public function rationalFloats()
+    {
+        return [
+            [1.2345, 2469, 2000],
+            [0.3333, 3333, 10000],  //should be 1/3
+            [-2.5, -25, 10],        //should be -5/2
+        ];
+    }
+
+    /**
+     *
+     * @dataProvider rationalFloats2
+     * @param float $real
+     * @param int $num
+     * @param int $den
+     */
+    public function testFromRealUsingContinuedFractionReturnsFraction($real, $num, $den)
+    {
+        $f = Fraction::fromRealViaContinuedFractions($real);
+        $this->assertInstanceOf(self::$classNameUnderTest, $f);
+        $this->assertEquals($num, $f->getNumerator());
+        $this->assertEquals($den, $f->getDenominator());
+    }
+
+    /**
+     * @see https://www.math.toronto.edu/mathnet/questionCorner/dectofract.html
+     * for a possible way to ensure 0.33333n => 1/3 in the reduce() method
+     *
+     * @return array
+     */
+    public function rationalFloats2()
+    {
+        return [
+            [1.2345, 2011, 1629],
+            [0.3333, 3333, 10000],  //should be 1/3.
+            [-2.5, -5, 2],
+        ];
+    }
+
+
+    public function irrationalFloats()
+    {
+        return [
+            //golden mean approximation. an irrational number- you'll never factor this - well,
+            // you can up to the limit of float precision
+            //[1.61803398874989484820, 161803398874989, 100000000000000],  //using existing function
+            //[1.61803398874989484820, 987, 610],  //using continued fractions
+
+            //Pi approximation 22/7 is a popular approximation but not correct
+            //[M_PI, 314159265358979, 100000000000000], //using existing function
+            //[M_PI, 355, 113], //using continued fractions
+
+            //square root of 2 approximation- again - only up to the limit of float precision
+            //other square and cube roots are irrational
+            //[sqrt(2), 14142135623731, 10000000000000],  //using existing function
+            //[sqrt(2), 1393, 985], //using continued fractions
+
+            //euler's number approximation - float precision
+            //[M_EULER, 57721566490153, 100000000000000], //using existing function
+            //[M_EULER, 228, 395], //using continued fractions
+        ];
+    }
 }

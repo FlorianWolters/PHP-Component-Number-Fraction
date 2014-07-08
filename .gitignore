@@ -21,7 +21,7 @@ $RECYCLE.BIN/
 .directory
 
 # NetBeans IDE
-
+nbproject*
 nbproject/private/
 build/
 nbbuild/
@@ -40,3 +40,6 @@ vendor/
 # PHPUnit
 
 phpunit.xml
+
+#Composer
+composer.lock

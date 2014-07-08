@@ -75,7 +75,7 @@ class Fraction implements
         }
 
         if (0 > $denominator) {
-            // The denominator is negative. St the sign of the entire fraction.
+            // The denominator is negative. Change the sign of the entire fraction.
             $numerator *= -1;
             $denominator *= -1;
         }
@@ -131,6 +131,34 @@ class Fraction implements
         $denominator = \pow(10, $length);
 
         return new self($numerator, $denominator);
+    }
+
+    public static function fromRealViaContinuedFractions($float, $tolerance = 1.e-6)
+    {
+        $negative = ($float < 0);
+        if ($negative) {
+            $float = abs($float);
+        }
+        $n1=1; $n2=0;
+        $d1=0; $d2=1;
+        $b = 1/$float;
+        do {
+            $b = 1/$b;
+            $a = floor($b);
+            $aux = $n1;
+            $n1 = $a * $n1 + $n2;
+            $n2 = $aux;
+            $aux = $d1;
+            $d1 = $a * $d1 + $d2;
+            $d2 = $aux;
+            $b = $b - $a;
+        } while (abs($float - $n1 / $d1) > $float * $tolerance);
+
+        if ($negative) {
+            $n1 *= -1;
+        }
+
+        return new self((int) $n1, (int) $d1);
     }
 
     /**
