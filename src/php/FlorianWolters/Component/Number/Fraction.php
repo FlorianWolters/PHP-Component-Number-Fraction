@@ -75,7 +75,7 @@ class Fraction implements
         }
 
         if (0 > $denominator) {
-            // The denominator is negative. St the sign of the entire fraction.
+            // The denominator is negative. Change the sign of the entire fraction.
             $numerator *= -1;
             $denominator *= -1;
         }
