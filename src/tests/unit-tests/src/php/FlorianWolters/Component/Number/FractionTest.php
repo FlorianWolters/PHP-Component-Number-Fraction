@@ -485,4 +485,29 @@ class FractionTest extends \PHPUnit_Framework_TestCase
             $this->firstFraction->divideBy($this->secondFraction)
         );
     }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage The string representation of the {@link Fraction} is invalid.
+     * @dataProvider noncompliantFractionStrings
+     */
+    public function testFromStringRejectsNonCompliantNumberString($noncompliant)
+    {
+        Fraction::fromString($noncompliant);
+    }
+
+    public function noncompliantFractionStrings()
+    {
+        return [
+            ["12345"],
+            ["foo"],
+            ["1/"],
+            ["/1"],
+            [""],
+        ];
+    }
+    public function testFromStringWithCorrectFormattedInputReturnsFraction()
+    {
+        $this->assertInstanceOf(self::$classNameUnderTest, Fraction::fromString('2/3'));
+    }
 }
