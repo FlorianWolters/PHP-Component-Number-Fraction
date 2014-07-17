@@ -1,17 +1,24 @@
 <?php
+/**
+ * FlorianWolters\Component\Math\MathUtils
+ *
+ * PHP Version 5.4
+ *
+ * @author    Florian Wolters <wolters.fl@gmail.com>
+ * @copyright 2011-2014 Florian Wolters (http://blog.florianwolters.de)
+ * @license   http://gnu.org/licenses/lgpl.txt LGPL-3.0+
+ * @link      http://github.com/FlorianWolters/PHP-Component-Math
+ * @todo      Create separated component containing this artifact.
+ */
+
 namespace FlorianWolters\Component\Math;
 
 /**
- * The class {@link MathUtils} contains methods for performing basic numeric
+ * The class {@see MathUtils} contains methods for performing basic numeric
  * operations such as the elementary exponential, logarithm, square root, and
  * trigonometric functions.
  *
- * @author    Florian Wolters <wolters.fl@gmail.com>
- * @copyright 2011-2013 Florian Wolters
- * @license   http://gnu.org/licenses/lgpl.txt LGPL 3.0+
- * @link      http://github.com/FlorianWolters/PHP-Component-Math
- * @since     Class available since Release 0.1.0
- * @todo      Create separated component containing this artifact.
+ * @since Class available since Release 0.1.0
  */
 final class MathUtils
 {
@@ -33,7 +40,7 @@ final class MathUtils
     // @codeCoverageIgnoreStart
 
     /**
-     * {@link MathUtils} instances should *NOT* be constructed in standard
+     * {@see MathUtils} instances should *NOT* be constructed in standard
      * programming.
      *
      * Instead, the class should be used as:
@@ -51,10 +58,10 @@ final class MathUtils
      * Returns the absolute value of the argument.
      *
      * @param float|integer $number The value whose absolute value has to be
-     *                              computed.
+     *    computed.
      *
-     * @return float|integer The argument if it is positive, otherwise the
-     *                       negation of the argument.
+     * @return float|int The argument if it is positive, otherwise the negation
+     *    of the argument.
      */
     public static function abs($number)
     {
@@ -63,26 +70,39 @@ final class MathUtils
 
     /**
      * Returns the double conversion of the most negative (closest to negative
-     * infinity) integer value which is greater than the argument.
+     * infinity) int value which is greater than the argument.
      *
      * @param float $number The value whose closest integer value has to be
-     *                      computed.
+     *    computed.
      *
-     * @return integer The ceiling of the argument.
+     * @return int The ceiling of the argument.
      */
     public static function ceil($number)
     {
-        return (integer) \ceil($number);
+        return (int) \ceil($number);
+    }
+
+    /**
+     * Returns the double conversion of the most positive (closest to positive
+     * infinity) integer value less than or equal to the argument.
+     *
+     * @param float $number The value whose closest integer value has to be
+     *    computed.
+     *
+     * @return int The flooring of the argument.
+     */
+    public static function floor($number)
+    {
+        return (int) \floor($number);
     }
 
     /**
      * Returns the greatest common divisor (gcd) of two values.
      *
-     * @param integer $first  An argument.
-     * @param integer $second Another argument.
+     * @param int $first  An argument.
+     * @param int $second Another argument.
      *
-     * @return integer The greatest common divisor of <var>$first</var> and
-     *                 <var>$second</var>.
+     * @return int The greatest common divisor of `$first` and `$second`.
      */
     public static function gcd($first, $second)
     {
@@ -94,11 +114,10 @@ final class MathUtils
     /**
      * Returns the least common multiple (lcm) of two values.
      *
-     * @param integer $first  An argument.
-     * @param integer $second Another argument.
+     * @param int $first  An argument.
+     * @param int $second Another argument.
      *
-     * @return integer The least common multiple of <var>$first</var> and
-     *                 <var>$second</var>.
+     * @return int The least common multiple of `$first` and `$second`.
      */
     public static function lcm($first, $second)
     {
@@ -118,7 +137,7 @@ final class MathUtils
      * @param mixes $first  An argument.
      * @param mixed $second Another argument.
      *
-     * @return mixed The larger of <var>$first</var> and <var>$second</var>.
+     * @return mixed The larger of `$first` and `$second`.
      */
     public static function max($first, $second)
     {
@@ -140,7 +159,7 @@ final class MathUtils
      * @param mixed $first  An argument.
      * @param mixed $second Another argument.
      *
-     * @return mixed The smaller of <var>$first</var> and <var>$second</var>.
+     * @return mixed The smaller of `$first` and `$second`.
      */
     public static function min($first, $second)
     {

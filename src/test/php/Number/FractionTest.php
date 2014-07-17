@@ -1,16 +1,24 @@
 <?php
+/**
+ * FlorianWolters\Component\Number\Fraction
+ *
+ * PHP Version 5.4
+ *
+ * @author    Florian Wolters <wolters.fl@gmail.com>
+ * @copyright 2011-2014 Florian Wolters (http://blog.florianwolters.de)
+ * @license   http://gnu.org/licenses/lgpl.txt LGPL-3.0+
+ * @link      http://github.com/FlorianWolters/PHP-Component-Number-Fraction
+ */
+
 namespace FlorianWolters\Component\Number;
 
 /**
- * Test class for {@link Fraction}.
+ * Test class for {@see Fraction}.
  *
- * @author    Florian Wolters <wolters.fl@gmail.com>
- * @copyright 2011-2013 Florian Wolters
- * @license   http://gnu.org/licenses/lgpl.txt LGPL 3.0+
- * @link      http://github.com/FlorianWolters/PHP-Component-Number-Fraction
- * @since     Class available since Release 0.1.0
- *
+ * @since  Class available since Release 0.1.0
  * @covers FlorianWolters\Component\Number\Fraction
+ * @covers FlorianWolters\Component\Math\MathUtils
+ * @covers FlorianWolters\Component\Math\BasicArithmeticOperationTrait
  */
 class FractionTest extends \PHPUnit_Framework_TestCase
 {
@@ -262,8 +270,8 @@ class FractionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tests whether {@link Fraction::isReduced} detects a
-     * {@link Fraction} which is not reduced.
+     * Tests whether {@see Fraction::isReduced} detects a {@see Fraction} which
+     * is not reduced.
      *
      * @return void
      * @see isReduced()
@@ -487,16 +495,24 @@ class FractionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @return void
+     *
+     * @coversClass fromString
+     * @dataProvider providerNonCompliantFractionStrings
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage The string representation of the {@link Fraction} is invalid.
-     * @dataProvider noncompliantFractionStrings
+     * @expectedExceptionMessage The string representation of the Fraction is invalid.
+     * @group unit
+     * @test
      */
     public function testFromStringRejectsNonCompliantNumberString($noncompliant)
     {
         Fraction::fromString($noncompliant);
     }
 
-    public function noncompliantFractionStrings()
+    /**
+     * @return array
+     */
+    public static function providerNonCompliantFractionStrings()
     {
         return [
             ["12345"],
@@ -506,8 +522,100 @@ class FractionTest extends \PHPUnit_Framework_TestCase
             [""],
         ];
     }
+
+    /**
+     * @return void
+     *
+     * @coversClass fromString
+     * @group unit
+     * @test
+     */
     public function testFromStringWithCorrectFormattedInputReturnsFraction()
     {
-        $this->assertInstanceOf(self::$classNameUnderTest, Fraction::fromString('2/3'));
+        $this->assertInstanceOf(
+            self::$classNameUnderTest,
+            Fraction::fromString('2/3'));
+    }
+
+    public function testConstructWithNegativeDenominatorReturnsNegativeNumerator()
+    {
+        $fraction = new Fraction(2, -3);
+
+        $this->assertEquals(-2, $fraction->getNumerator());
+        $this->assertEquals(3, $fraction->getDenominator());
+    }
+
+    /**
+     * @param float $real
+     * @param int   $numerator
+     * @param int   $denominator
+     *
+     * @return void
+     *
+     * @coversClass fromReal
+     * @coversClass fromReal
+     * @dataProvider providerFromReal
+     * @group unit
+     * @test
+     */
+    public function testFromRealWithRationalValuesReturnsFraction(
+        $real,
+        $numerator,
+        $denominator)
+    {
+        $fraction = Fraction::fromReal($real);
+
+        $this->assertEquals($numerator, $fraction->getNumerator());
+        $this->assertEquals($denominator, $fraction->getDenominator());
+    }
+
+    /**
+     * @return array
+     */
+    public static function providerFromReal()
+    {
+        return [
+            [1.2345, 2469, 2000],
+            [0.3333, 3333, 10000], // 1/3
+            [-2.5, -25, 10]        // -5/2
+        ];
+    }
+
+    /**
+     * @param float $real
+     * @param int   $numerator
+     * @param int   $denominator
+     *
+     * @return void
+     *
+     * @coversClass fromRealViaContinuedFractions
+     * @dataProvider providerFromRealViaContinuedFractions
+     * @group unit
+     * @test
+     */
+    public function testFromRealUsingContinuedFractionReturnsFraction(
+        $real,
+        $numerator,
+        $denominator)
+    {
+        $fraction = Fraction::fromRealViaContinuedFractions($real);
+
+        $this->assertEquals($numerator, $fraction->getNumerator());
+        $this->assertEquals($denominator, $fraction->getDenominator());
+    }
+
+    /**
+     * @return array
+     *
+     * @see https://www.math.toronto.edu/mathnet/questionCorner/dectofract.html
+     * for a possible way to ensure 0.33333n => 1/3 in the reduce() method
+     */
+    public static function providerFromRealViaContinuedFractions()
+    {
+        return [
+            [1.2345, 2011, 1629],
+            [0.3333, 3333, 10000], // 1/3.
+            [-2.5, -5, 2]
+        ];
     }
 }

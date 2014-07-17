@@ -20,11 +20,20 @@
         "florianwolters/component-core-equality": "dev-master",
         "florianwolters/component-core-hashcode": "dev-master"
     },
+    "require-dev": {
+        "pdepend/pdepend": "2.*",
+        "phpmd/phpmd": "2.*",
+        "phpunit/phpunit": "4.*",
+        "sami/sami": "2.*",
+        "sebastian/phpcpd": "2.*",
+        "sebastian/phpdcd": "1.*",
+        "satooshi/php-coveralls": "0.*@dev",
+        "sensiolabs/security-checker": "1.*",
+        "squizlabs/php_codesniffer": "2.*@dev"
+    },
     "autoload": {
-        "psr-0": {
-            "FlorianWolters": [
-                "src/php"
-            ]
+        "psr-4": {
+            "FlorianWolters\\Component\\": "src/main/php"
         }
     }
 }

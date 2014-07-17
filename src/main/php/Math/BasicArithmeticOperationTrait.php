@@ -1,16 +1,24 @@
 <?php
+/**
+ * FlorianWolters\Component\Math\BasicArithmeticOperationTrait
+ *
+ * PHP Version 5.4
+ *
+ * @author    Florian Wolters <wolters.fl@gmail.com>
+ * @copyright 2011-2014 Florian Wolters (http://blog.florianwolters.de)
+ * @license   http://gnu.org/licenses/lgpl.txt LGPL-3.0+
+ * @link      http://github.com/FlorianWolters/PHP-Component-Math
+ * @todo      Create separated component containing this artifact.
+ */
 
 namespace FlorianWolters\Component\Math;
 
 /**
- * TODO Add comment.
+ * A class using the trait BasicArithmeticOperationTrait implements the four
+ * basic arithmetic operations *addition*, *subtraction*, *multiplication* and
+ * *division*.
  *
- * @author    Florian Wolters <wolters.fl@gmail.com>
- * @copyright 2013 Florian Wolters
- * @license   http://gnu.org/licenses/lgpl.txt LGPL-3.0+
- * @link      http://github.com/FlorianWolters/PHP-Component-Math
- * @since     Trait available since Release 0.1.0
- * @todo      Create separated component containing this artifact.
+ * @since Trait available since Release 0.1.0
  */
 trait BasicArithmeticOperationTrait
 {

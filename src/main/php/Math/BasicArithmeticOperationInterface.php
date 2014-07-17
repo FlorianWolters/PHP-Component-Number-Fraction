@@ -1,17 +1,24 @@
 <?php
+/**
+ * FlorianWolters\Component\Math\BasicArithmeticOperationInterface
+ *
+ * PHP Version 5.4
+ *
+ * @author    Florian Wolters <wolters.fl@gmail.com>
+ * @copyright 2011-2014 Florian Wolters (http://blog.florianwolters.de)
+ * @license   http://gnu.org/licenses/lgpl.txt LGPL-3.0+
+ * @link      http://github.com/FlorianWolters/PHP-Component-Math
+ * @todo      Create separated component containing this artifact.
+ */
+
 namespace FlorianWolters\Component\Math;
 
 /**
- * The interface {@link BasicArithmeticOperationProviderInterface} provides the
+ * The interface {@see BasicArithmeticOperationProviderInterface} provides the
  * four basic arithmetic operations *addition*, *subtraction*, *multiplication*
  * and *division*.
  *
- * @author    Florian Wolters <wolters.fl@gmail.com>
- * @copyright 2012-2013 Florian Wolters
- * @license   http://gnu.org/licenses/lgpl.txt LGPL-3.0+
- * @link      http://github.com/FlorianWolters/PHP-Component-Math
- * @since     Interface available since Release 0.1.0
- * @todo      Create separated component containing this artifact.
+ * @since Interface available since Release 0.1.0
  */
 interface BasicArithmeticOperationInterface
 {
@@ -24,7 +31,7 @@ interface BasicArithmeticOperationInterface
      * \---
      *
      * @param BasicArithmeticOperationInterface $other The object to add to this
-     *                                                 object.
+     *    object.
      *
      * @return object The sum of this object with the specified object.
      */
@@ -38,8 +45,8 @@ interface BasicArithmeticOperationInterface
      * $result = $this - $other;
      * \---
      *
-     * @param BasicArithmeticOperationInterface $other The object to subtrac t
-     *                                                 from this object.
+     * @param BasicArithmeticOperationInterface $other The object to subtract
+     *    from this object.
      *
      * @return object The difference of this object with the specified object.
      */
@@ -54,8 +61,7 @@ interface BasicArithmeticOperationInterface
      * \---
      *
      * @param BasicArithmeticOperationInterface $other The object to
-     *                                                 multiplicate with this
-     *                                                 object.
+     *    multiplicate with this object.
      *
      * @return object The product of this object with the specified object.
      */
@@ -70,7 +76,7 @@ interface BasicArithmeticOperationInterface
      * \---
      *
      * @param BasicArithmeticOperationInterface $other The object to divide
-     *                                                 through this object.
+     *    through this object.
      *
      * @return object The quotient of this object with the specified object.
      */

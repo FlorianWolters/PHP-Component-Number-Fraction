@@ -1,4 +1,15 @@
 <?php
+/**
+ * FlorianWolters\Component\Number\Fraction
+ *
+ * PHP Version 5.4
+ *
+ * @author    Florian Wolters <wolters.fl@gmail.com>
+ * @copyright 2011-2014 Florian Wolters (http://blog.florianwolters.de)
+ * @license   http://gnu.org/licenses/lgpl.txt LGPL-3.0+
+ * @link      http://github.com/FlorianWolters/PHP-Component-Number-Fraction
+ */
+
 namespace FlorianWolters\Component\Number;
 
 use \InvalidArgumentException;
@@ -11,17 +22,13 @@ use FlorianWolters\Component\Math\BasicArithmeticOperationTrait;
 use FlorianWolters\Component\Math\MathUtils;
 
 /**
- * An object of class {@link Fraction} wraps a fraction
- * (`numerator/denominator`) into an object.
+ * An object of class {@see Fraction} wraps a fraction (`numerator/denominator`)
+ * into an object.
  *
- * A {@link Fraction} is a `Number` implementation that stores {@link Fraction}s
+ * A {@see Fraction} is a `Number` implementation that stores {@see Fraction}s
  * accurately.
  *
- * @author    Florian Wolters <wolters.fl@gmail.com>
- * @copyright 2011-2013 Florian Wolters
- * @license   http://gnu.org/licenses/lgpl.txt LGPL 3.0+
- * @link      http://github.com/FlorianWolters/PHP-Component-Number-Fraction
- * @since     Class available since Release 0.1.0
+ * @since Class available since Release 0.1.0
  */
 class Fraction implements
     BasicArithmeticOperationInterface,
@@ -29,38 +36,38 @@ class Fraction implements
     DebugPrintInterface,
     EqualityInterface
 {
-    // TODO Or use a static class `BasicArithmeticOperationUtils` instead?
+    // TODO(wolters) Use a static class `BasicArithmeticOperationUtils` instead?
     use BasicArithmeticOperationTrait;
 
     /**
-     * The numerator of this {@link Fraction}.
+     * The numerator of this {@see Fraction}.
      *
-     * @var integer
+     * @var int
      */
     private $numerator;
 
     /**
-     * The denominator of this {@link Fraction}.
+     * The denominator of this {@see Fraction}.
      *
-     * @var integer
+     * @var int
      */
     private $denominator;
 
     /**
-     * `true` if this {@link Fraction} should be reduced; `false` otherwise.
+     * `true` if this {@see Fraction} should be reduced; `false` otherwise.
      *
-     * @var boolean
+     * @var bool
      */
     private $reduce = false;
 
     /**
-     * Constructs a new {@link Fraction} object with the specified numerator and
+     * Constructs a new {@see Fraction} object with the specified numerator and
      * denominator.
      *
-     * @param integer $numerator   The numerator of the {@link Fraction}.
-     * @param integer $denominator The denominator of the {@link Fraction}.
-     * @param boolean $reduce      `true` if the {@link Fraction} should be
-     *                             reduced; `false` otherwise.
+     * @param int  $numerator   The numerator of the {@see Fraction}.
+     * @param int  $denominator The denominator of the {@see Fraction}.
+     * @param bool $reduce      `true` if the {@see Fraction} should be reduced;
+     *    `false` otherwise.
      *
      * @throws ArithmeticException If the denominator is `0`.
      */
@@ -75,7 +82,8 @@ class Fraction implements
         }
 
         if (0 > $denominator) {
-            // The denominator is negative. St the sign of the entire fraction.
+            // The denominator is negative. Change the sign of the entire
+            // fraction.
             $numerator *= -1;
             $denominator *= -1;
         }
@@ -85,18 +93,18 @@ class Fraction implements
         $this->reduce = $reduce;
 
         if (true === $this->reduce) {
-            // TODO See comment for method reduceThis.
+            // TODO(wolters) See comment for method reduceThis.
             $this->reduceThis();
         }
     }
 
     /**
-     * Converts a `float` to a {@link Fraction} and tries to keep the maximal
+     * Converts a `float` to a {@see Fraction} and tries to keep the maximal
      * possible precision.
      *
-     * @param float $real The `float` to convert to a {@link Fraction} object.
+     * @param float $real The `float` to convert to a {@see Fraction} object.
      *
-     * @return Fraction A new {@link Fraction} object.
+     * @return Fraction A new {@see Fraction} object.
      */
     public static function fromReal($real)
     {
@@ -105,12 +113,13 @@ class Fraction implements
         // Keep the original sign, so that the numerator could be converted
         // later.
         $negative = ($real < 0);
+
         if (true === $negative) {
             $real *= -1;
         }
 
         // Get the part before the floating point.
-        $integer = \floor($real);
+        $integer = MathUtils::floor($real);
         // Make the float belonging to the interval [0, 1).
         $real = ($real - $integer);
         // Strip the zero and the floating point.
@@ -134,24 +143,67 @@ class Fraction implements
     }
 
     /**
-     * Converts a `string` to a {@link Fraction}.
+     * Converts a `float` to a {@see Fraction} with the specified tolerance.
      *
-     * @param string $str The `string` to convert to a {@link Fraction} object.
+     * @param float $real The `float` to convert to a {@see Fraction} object.
+     * @param float $tolerance The tolerance.
      *
-     * @return Fraction A new {@link Fraction} object.
+     * @return Fraction A new {@see Fraction} object.
+     */
+    public static function fromRealViaContinuedFractions($float, $tolerance = 1.e-6)
+    {
+        $negative = ($float < 0);
+
+        if (true === $negative) {
+            $float = MathUtils::abs($float);
+        }
+
+        $firstNumerator = 1;
+        $secondNumerator = 0;
+        $firstDenominator = 0;
+        $secondDenominator = 1;
+        $b = 1 / $float;
+
+        do {
+            $b = 1 / $b;
+            $a = MathUtils::floor($b);
+            $aux = $firstNumerator;
+            $firstNumerator = $a * $firstNumerator + $secondNumerator;
+            $secondNumerator = $aux;
+            $aux = $firstDenominator;
+            $firstDenominator = $a * $firstDenominator + $secondDenominator;
+            $secondDenominator = $aux;
+            $b -= $a;
+        } while (MathUtils::abs($float - $firstNumerator / $firstDenominator) > $float * $tolerance);
+
+        if (true === $negative) {
+            $firstNumerator *= -1;
+        }
+
+        return new self((int) $firstNumerator, (int) $firstDenominator);
+    }
+
+    /**
+     * Converts a `string` to a {@see Fraction}.
+     *
+     * @param string $str The `string` to convert to a {@see Fraction} object.
+     *
+     * @return Fraction A new {@see Fraction} object.
      * @throws InvalidArgumentException If the `string` is invalid.
      */
     public static function fromString($str)
     {
+        $matches = [];
+
         $valid = \preg_match(
             '#^(-)? *?(\d+) *?/ *?(-)? *?(\d+)$#',
             \trim($str),
             $matches
         );
 
-        if ($valid !== 1) {
+        if (1 !== $valid) {
             throw new InvalidArgumentException(
-                'The string representation of the {@link Fraction} is invalid.'
+                'The string representation of the Fraction is invalid.'
             );
         }
 
@@ -159,7 +211,7 @@ class Fraction implements
         $denominator = $matches[4];
 
         if ($matches[1] xor $matches[3]) {
-            // There is one '-' sign => the {@link Fraction} is negative.
+            // There is one '-' sign => the fraction is negative.
             $numerator *= -1;
         }
 
@@ -167,9 +219,9 @@ class Fraction implements
     }
 
     /**
-     * Returns the numerator of this {@link Fraction}.
+     * Returns the numerator of this {@see Fraction}.
      *
-     * @return integer The numerator.
+     * @return int The numerator.
      * @see getDenominator
      */
     public function getNumerator()
@@ -178,9 +230,9 @@ class Fraction implements
     }
 
     /**
-     * Returns the denominator of this {@link Fraction}.
+     * Returns the denominator of this {@see Fraction}.
      *
-     * @return integer The denominator.
+     * @return int The denominator.
      * @see getNumerator
      */
     public function getDenominator()
@@ -189,10 +241,10 @@ class Fraction implements
     }
 
     /**
-     * Returns the value of this {@link Fraction} as a `float`.
+     * Returns the value of this {@see Fraction} as a `float`.
      *
      * @return float The numeric value represented by this object after
-     *               conversion to type `float`.
+     *    conversion to type `float`.
      * @see intValue
      * @see __toString
      */
@@ -202,10 +254,10 @@ class Fraction implements
     }
 
     /**
-     * Returns the value of this {@link Fraction} as an `integer`.
+     * Returns the value of this {@see Fraction} as an `integer`.
      *
-     * @return integer The numeric value represented by this object after
-     *                 conversion to type `integer`.
+     * @return int The numeric value represented by this object after conversion
+     *    to type `integer`.
      * @see floatValue
      * @see __toString
      */
@@ -215,10 +267,10 @@ class Fraction implements
     }
 
     /**
-     * Checks whether this {@link Fraction} is reduced.
+     * Checks whether this {@see Fraction} is reduced.
      *
-     * @return boolean `true` if this {@link Fraction} is reduced; `false`
-     *                 otherwise.
+     * @return bool `true` if this {@see Fraction} is reduced; `false`
+     *    otherwise.
      */
     public function isReduced()
     {
@@ -226,7 +278,7 @@ class Fraction implements
     }
 
     /**
-     * Returns a {@link Fraction} that is the positive equivalent of this {@link
+     * Returns a {@see Fraction} that is the positive equivalent of this {@see
      * Fraction}.
      *
      * More precisely:
@@ -234,9 +286,9 @@ class Fraction implements
      * $result = $this >= 0 ? $this : -$this;
      * \---
      *
-     * @return Fraction This {@link Fraction} if this {@link Fraction} is
-     *                  positive, or a new positive {@link Fraction} with the
-     *                  opposite signed numerator.
+     * @return Fraction This {@see Fraction} if this {@see Fraction} is
+     *    positive, or a new positive {@see Fraction} with the opposite signed
+     *    numerator.
      */
     public function abs()
     {
@@ -246,9 +298,9 @@ class Fraction implements
     }
 
     /**
-     * Returns the greatest common divisor (gcd) of this {@link Fraction}.
+     * Returns the greatest common divisor (gcd) of this {@see Fraction}.
      *
-     * @return integer the greatest common divisor.
+     * @return int The greatest common divisor.
      * @see lcm
      */
     public function gcd()
@@ -257,11 +309,11 @@ class Fraction implements
     }
 
     /**
-     * Returns the least common multiple (lcm) of two {@link Fraction}s.
+     * Returns the least common multiple (lcm) of two {@see Fraction}s.
      *
-     * @param Fraction $other Another {@link Fraction}.
+     * @param Fraction $other Another {@see Fraction}.
      *
-     * @return integer The least common multiple.
+     * @return int The least common multiple.
      * @see gcd
      */
     public function lcm(Fraction $other)
@@ -270,11 +322,11 @@ class Fraction implements
     }
 
     /**
-     * Returns a new {@link Fraction} that is the negative (-{@link Fraction})
-     * of this {@link Fraction}.
+     * Returns a new {@see Fraction} that is the negative (-{@see Fraction})
+     * of this {@see Fraction}.
      *
-     * @return Fraction A new {@link Fraction} with the opposite signed
-     *                  numerator.
+     * @return Fraction A new {@see Fraction} with the opposite signed
+     *    numerator.
      */
     public function negate()
     {
@@ -282,9 +334,9 @@ class Fraction implements
     }
 
     /**
-     * Returns the reciprocal of this {@link Fraction}.
+     * Returns the reciprocal of this {@see Fraction}.
      *
-     * @return Fraction The reciprocal of this {@link Fraction}.
+     * @return Fraction The reciprocal of this {@see Fraction}.
      */
     public function reciprocal()
     {
@@ -292,9 +344,9 @@ class Fraction implements
     }
 
     /**
-     * Returns the reduction of this {@link Fraction}.
+     * Returns the reduction of this {@see Fraction}.
      *
-     * @return Fraction The reduction of this {@link Fraction}.
+     * @return Fraction The reduction of this {@see Fraction}.
      */
     public function reduce()
     {
@@ -306,11 +358,11 @@ class Fraction implements
     }
 
     /**
-     * Reduces this {@link Fraction}.
+     * Reduces this {@see Fraction}.
      *
-     * Modifies the numerator and denumerator of this {@link Fraction}.
+     * Modifies the numerator and denumerator of this {@see Fraction}.
      *
-     * @return Fraction This {@link Fraction}.
+     * @return Fraction This {@see Fraction}.
      * @todo Is there a better solution than this for usage in the constructor?
      */
     private function reduceThis()
@@ -345,9 +397,8 @@ class Fraction implements
     /**
      * {@inheritdoc}
      */
-    public function subtract(
-        BasicArithmeticOperationInterface $other
-    ) {
+    public function subtract(BasicArithmeticOperationInterface $other)
+    {
         return $this->add(
             new self(($other->numerator * -1), $other->denominator)
         );
@@ -356,9 +407,8 @@ class Fraction implements
     /**
      * {@inheritdoc}
      */
-    public function multiplyBy(
-        BasicArithmeticOperationInterface $other
-    ) {
+    public function multiplyBy(BasicArithmeticOperationInterface $other)
+    {
         return new self(
             ($this->numerator * $other->numerator),
             ($this->denominator * $other->denominator)
@@ -368,9 +418,8 @@ class Fraction implements
     /**
      * {@inheritdoc}
      */
-    public function divideBy(
-        BasicArithmeticOperationInterface $other
-    ) {
+    public function divideBy(BasicArithmeticOperationInterface $other)
+    {
         return $this->multiplyBy($other->reciprocal());
     }
 
