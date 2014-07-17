@@ -149,7 +149,7 @@ class Fraction implements
             $matches
         );
 
-        if (false === $valid) {
+        if ($valid !== 1) {
             throw new InvalidArgumentException(
                 'The string representation of the {@link Fraction} is invalid.'
             );
