@@ -534,7 +534,8 @@ class FractionTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertInstanceOf(
             self::$classNameUnderTest,
-            Fraction::fromString('2/3'));
+            Fraction::fromString('2/3')
+        );
     }
 
     public function testConstructWithNegativeDenominatorReturnsNegativeNumerator()
@@ -561,8 +562,8 @@ class FractionTest extends \PHPUnit_Framework_TestCase
     public function testFromRealWithRationalValuesReturnsFraction(
         $real,
         $numerator,
-        $denominator)
-    {
+        $denominator
+    ) {
         $fraction = Fraction::fromReal($real);
 
         $this->assertEquals($numerator, $fraction->getNumerator());
@@ -596,8 +597,8 @@ class FractionTest extends \PHPUnit_Framework_TestCase
     public function testFromRealUsingContinuedFractionReturnsFraction(
         $real,
         $numerator,
-        $denominator)
-    {
+        $denominator
+    ) {
         $fraction = Fraction::fromRealViaContinuedFractions($real);
 
         $this->assertEquals($numerator, $fraction->getNumerator());
